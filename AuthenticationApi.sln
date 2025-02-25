@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35818.85
@@ -6,8 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.Common", "BlogApp.Common\BlogApp.Common.csproj", "{A019E680-E50B-9C29-FBA9-2708923FE782}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.AuthenticationApi", "BlogApp.AuthenticationApi\BlogApp.AuthenticationApi.csproj", "{190CA556-DD7D-458B-909A-6BF0A1E2BE16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.FileApi", "BlogApp.FileApi\BlogApp.FileApi.csproj", "{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{190CA556-DD7D-458B-909A-6BF0A1E2BE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{190CA556-DD7D-458B-909A-6BF0A1E2BE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{190CA556-DD7D-458B-909A-6BF0A1E2BE16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
