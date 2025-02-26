@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.AuthenticationApi",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.FileApi", "BlogApp.FileApi\BlogApp.FileApi.csproj", "{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.DataApi", "BlogApp.DataApi\BlogApp.DataApi.csproj", "{8148A8BB-ABE0-4CA8-A5FE-11633DA99621}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06A01FD4-7B7D-4C28-AAE0-159FC17E5788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8148A8BB-ABE0-4CA8-A5FE-11633DA99621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8148A8BB-ABE0-4CA8-A5FE-11633DA99621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8148A8BB-ABE0-4CA8-A5FE-11633DA99621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8148A8BB-ABE0-4CA8-A5FE-11633DA99621}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

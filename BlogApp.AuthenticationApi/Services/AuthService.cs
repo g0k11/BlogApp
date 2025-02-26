@@ -1,4 +1,5 @@
 ﻿using Ardalis.Result;
+using BlogApp.AuthenticationApi.DTOs;
 using BlogApp.AuthenticationApi.Entities;
 using BlogApp.AuthenticationApi.Repositories.Interfaces;
 using BlogApp.AuthenticationApi.Services.Interfaces;
@@ -55,6 +56,27 @@ namespace BlogApp.AuthenticationApi.Services
 
             var token = _tokenService.GenerateToken(user.Value);
             return Result.Success(token);
+        }
+        public async Task<Result> ChangePasswordAsync(ChangePasswordRequest request)
+        {
+            var userResult = await _userRepository.GetByUsernameAsync(request.Username);
+            if (!userResult.IsSuccess)
+            {
+                return Result.NotFound("User not found.");
+            }
+
+            var user = userResult.Value;
+            var verifyPassword = _passwordHasher.VerifyHashedPassword(null, user.PasswordHash, request.CurrentPassword);
+
+            if (verifyPassword == PasswordVerificationResult.Failed)
+            {
+                return Result.Unauthorized("Current password is incorrect.");
+            }
+
+            user.PasswordHash = _passwordHasher.HashPassword(null, request.NewPassword);
+            await _userRepository.UpdateAsync(user);
+
+            return Result.SuccessWithMessage("Password changed successfully.");
         }
     }
 }
