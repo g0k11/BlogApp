@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BlogApp.Common.Interfaces
+namespace BlogApp.Common.GenericRepository.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
