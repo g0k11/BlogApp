@@ -1,36 +1,38 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Http;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
-namespace BlogApp.Common.DependencyInjections
+namespace BlogApp.AuthenticationApi.Middlewares
 {
-    public static class JwtAuthScheme
+    public class AuthMiddleware
     {
-        public static IServiceCollection AddJWTAuthScheme(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer("Bearer", options =>
-                {
-                    var key = Encoding.UTF8.GetBytes(configuration.GetSection("Authentication:Key").Value!);
-                    string issuer = configuration.GetSection("Authentication:Issuer").Value!;
-                    string audience = configuration.GetSection("Authentication:Audience").Value!;
+        private readonly RequestDelegate _next;
 
-                    options.RequireHttpsMetadata = false;
-                    options.SaveToken = true;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = issuer,
-                        ValidAudience = audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(key)
-                    };
-                });
-            return services;
+        public AuthMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public async Task Invoke(HttpContext context)
+        {
+            if (context.User.Identity?.IsAuthenticated == true)
+            {
+                var userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var userRole = context.User.FindFirst(ClaimTypes.Role)?.Value;
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    context.Items["UserId"] = userId;
+                }
+
+                if (!string.IsNullOrEmpty(userRole))
+                {
+                    context.Items["UserRole"] = userRole;
+                }
+            }
+
+            await _next(context);
         }
     }
 }
