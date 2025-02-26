@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.FileApi", "BlogApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.DataApi", "BlogApp.DataApi\BlogApp.DataApi.csproj", "{8148A8BB-ABE0-4CA8-A5FE-11633DA99621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.ControlPanel", "BlogApp.ControlPanel\BlogApp.ControlPanel.csproj", "{604C930C-EE25-4A51-BD1C-6E3EF4E19930}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.ControlPanelMvc", "BlogApp.ControlPanel\BlogApp.ControlPanelMvc.csproj", "{604C930C-EE25-4A51-BD1C-6E3EF4E19930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.PortfolioWebsite", "BlogApp.PortfolioWebsite\BlogApp.PortfolioWebsite.csproj", "{6BD402D4-E8A1-47F8-A5E1-4E5816514DA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.PortfolioWebsiteMvc", "BlogApp.PortfolioWebsite\BlogApp.PortfolioWebsiteMvc.csproj", "{6BD402D4-E8A1-47F8-A5E1-4E5816514DA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
