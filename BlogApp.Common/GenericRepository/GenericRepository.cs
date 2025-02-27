@@ -26,25 +26,11 @@ namespace BlogApp.Common.GenericRepository
             try
             {
                 var items = await _dbSet.ToListAsync();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                return Result.Success(items);
-            }
-            catch (Exception ex)
-            {
-                return Result.Error<IEnumerable<T>>(new[] { ex.Message });
-=======
-=======
->>>>>>> Stashed changes
                 return Result<IEnumerable<T>>.Success(items);
             }
             catch (Exception ex)
             {
                 return Result<IEnumerable<T>>.Error(ex.Message);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             }
         }
 
@@ -53,16 +39,6 @@ namespace BlogApp.Common.GenericRepository
             try
             {
                 var item = await _dbSet.FindAsync(id);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                return item is null ? Result.NotFound<T>() : Result.Success(item);
-            }
-            catch (Exception ex)
-            {
-                return Result.Error<T>(new[] { ex.Message });
-=======
-=======
->>>>>>> Stashed changes
                 return item is null 
                     ? Result<T>.NotFound() 
                     : Result<T>.Success(item);
@@ -70,10 +46,6 @@ namespace BlogApp.Common.GenericRepository
             catch (Exception ex)
             {
                 return Result<T>.Error(ex.Message);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             }
         }
 
@@ -82,16 +54,6 @@ namespace BlogApp.Common.GenericRepository
             try
             {
                 var item = await _dbSet.FirstOrDefaultAsync(predicate);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                return item is null ? Result.NotFound<T>() : Result.Success(item);
-            }
-            catch (Exception ex)
-            {
-                return Result.Error<T>(new[] { ex.Message });
-=======
-=======
->>>>>>> Stashed changes
                 return item is null 
                     ? Result<T>.NotFound() 
                     : Result<T>.Success(item);
@@ -99,10 +61,6 @@ namespace BlogApp.Common.GenericRepository
             catch (Exception ex)
             {
                 return Result<T>.Error(ex.Message);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             }
         }
 
@@ -112,25 +70,11 @@ namespace BlogApp.Common.GenericRepository
             {
                 await _dbSet.AddAsync(entity);
                 await _context.SaveChangesAsync();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                return Result.Success(entity);
-            }
-            catch (Exception ex)
-            {
-                return Result.Error<T>(new[] { ex.Message });
-=======
-=======
->>>>>>> Stashed changes
                 return Result<T>.Success(entity);
             }
             catch (Exception ex)
             {
                 return Result<T>.Error(ex.Message);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             }
         }
 
@@ -140,25 +84,11 @@ namespace BlogApp.Common.GenericRepository
             {
                 _dbSet.Update(entity);
                 await _context.SaveChangesAsync();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                return Result.Success(entity);
-            }
-            catch (Exception ex)
-            {
-                return Result.Error<T>(new[] { ex.Message });
-=======
-=======
->>>>>>> Stashed changes
                 return Result<T>.Success(entity);
             }
             catch (Exception ex)
             {
                 return Result<T>.Error(ex.Message);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             }
         }
 
@@ -176,15 +106,7 @@ namespace BlogApp.Common.GenericRepository
             }
             catch (Exception ex)
             {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                return Result.Error(new[] { ex.Message });
-=======
                 return Result.Error(ex.Message);
->>>>>>> Stashed changes
-=======
-                return Result.Error(ex.Message);
->>>>>>> Stashed changes
             }
         }
     }
