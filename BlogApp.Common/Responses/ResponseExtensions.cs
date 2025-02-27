@@ -8,9 +8,12 @@ namespace BlogApp.Common.Responses
         {
             return response.Flag
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 ? Result.Success(response.Data)
                 : Result.Error(response.Message);
 =======
+=======
+>>>>>>> Stashed changes
                 ? Result<T>.Success(response.Data)
                 : Result<T>.Error(response.Message);
         }
@@ -33,6 +36,9 @@ namespace BlogApp.Common.Responses
             }
             
             return new Response<object>(false, string.Join(", ", result.Errors));
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
     }
