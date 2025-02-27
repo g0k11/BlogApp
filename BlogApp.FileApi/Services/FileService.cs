@@ -11,15 +11,15 @@ namespace BlogApp.FileApi.Services
     // Kendi özel dosya sonuç sınıfımızı tanımlayalım (FileResult isim çakışmasını önlemek için)
     public class FileDownloadResult
     {
-        public Stream FileStream { get; set; }
-        public string ContentType { get; set; }
-        public string FileName { get; set; }
+        public Stream FileStream { get; set; } = null!;
+        public string ContentType { get; set; } = string.Empty;
+        public string FileName { get; set; } = string.Empty;
     }
 
     public interface IFileService
     {
         Task<(string fileName, bool isDuplicate)> UploadFileAsync(IFormFile file);
-        Task<FileDownloadResult> DownloadFileAsync(string fileName);
+        Task<FileDownloadResult?> DownloadFileAsync(string fileName);
         Task<bool> DeleteFileAsync(string fileName);
     }
 
@@ -60,11 +60,16 @@ namespace BlogApp.FileApi.Services
 
         public async Task<(string fileName, bool isDuplicate)> UploadFileAsync(IFormFile file)
         {
+            if (file == null)
+            {
+                throw new ArgumentNullException(nameof(file), "Yüklenen dosya null olamaz");
+            }
+
             // Önce dosya hash değerini hesapla
             string fileHash = await CalculateFileHashAsync(file);
 
             // Aynı hash değerine sahip dosya var mı kontrol et
-            if (_fileHashes.TryGetValue(fileHash, out string existingFileName))
+            if (_fileHashes.TryGetValue(fileHash, out string? existingFileName) && existingFileName != null)
             {
                 // Aynı içeriğe sahip dosya zaten var, mevcut dosya adını ve duplicate=true döndür
                 return (existingFileName, true);
@@ -109,6 +114,11 @@ namespace BlogApp.FileApi.Services
 
         private async Task<string> CalculateFileHashAsync(IFormFile file)
         {
+            if (file == null)
+            {
+                throw new ArgumentNullException(nameof(file), "Hash hesaplanacak dosya null olamaz");
+            }
+
             using (var ms = new MemoryStream())
             {
                 await file.CopyToAsync(ms);
@@ -123,6 +133,11 @@ namespace BlogApp.FileApi.Services
 
         private string CalculateFileHash(string filePath)
         {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new ArgumentNullException(nameof(filePath), "Dosya yolu boş olamaz");
+            }
+
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             using (var sha256 = SHA256.Create())
             {
@@ -131,8 +146,13 @@ namespace BlogApp.FileApi.Services
             }
         }
 
-        public async Task<FileDownloadResult> DownloadFileAsync(string fileName)
+        public async Task<FileDownloadResult?> DownloadFileAsync(string fileName)
         {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return null;
+            }
+
             var filePath = Path.Combine(_fileStoragePath, fileName);
 
             if (!System.IO.File.Exists(filePath))
@@ -157,6 +177,11 @@ namespace BlogApp.FileApi.Services
 
         public Task<bool> DeleteFileAsync(string fileName)
         {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return Task.FromResult(false);
+            }
+
             var filePath = Path.Combine(_fileStoragePath, fileName);
 
             if (!System.IO.File.Exists(filePath))
@@ -188,6 +213,11 @@ namespace BlogApp.FileApi.Services
 
         private string GetContentType(string path)
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                return "application/octet-stream";
+            }
+
             var extension = Path.GetExtension(path).ToLowerInvariant();
 
             return extension switch
